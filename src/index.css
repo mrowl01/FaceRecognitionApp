@@ -8,3 +8,7 @@ body {
   background-origin: center;
   background-size: cover;
 }
+
+button{
+	cursor:pointer;
+}

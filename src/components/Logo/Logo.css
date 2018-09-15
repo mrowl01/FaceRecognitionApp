@@ -1,0 +1,8 @@
+.Tilt {
+	background-image:url('./ortegalogo.png');
+	background-origin: center;
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-color: black;
+	padding-top:5px;
+}

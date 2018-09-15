@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/Navigation/Navigation'
-import Logo from './components/Navigation/Logo'
+import Logo from './components/Logo/Logo'
 
 class App extends Component {
   render() {

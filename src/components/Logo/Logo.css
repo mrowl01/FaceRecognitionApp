@@ -1,8 +1,12 @@
 .Tilt {
+	background-color:#d6d7d8;
 	background-image:url('./ortegalogo.png');
 	background-origin: center;
 	background-repeat: no-repeat;
 	background-size: cover; 
-	background-color: black;
 	padding-top:5px;
+}
+
+.Tilt:hover{
+	background-color:black;
 }

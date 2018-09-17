@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
@@ -7,7 +6,9 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.js';
 import Rank from './components/Rank/Rank.js';
 import Particles from 'react-particles-js'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import Register from './components/Register/Register';
 import Clarifai from 'clarifai';
+import SignIn from './components/SignIn/SignIn';
 
 const API_KEY= process.env.REACT_APP_CLARAFAI;
 
@@ -51,6 +52,8 @@ class App extends Component {
       input:'',
       imageURL:'',
       box:{},
+      route:'signin',
+      isSignedIn:false,
     }
   }
 
@@ -86,15 +89,39 @@ class App extends Component {
       this.displayFaceBox(this.calculateFaceLocation(response)))
       .catch(err=>console.log("Ooops something went wrong", err));
     }
+
+//todo add authentication
+  onRouteChange=(route)=>{
+    if(route ==='signout'){
+      this.setState({isSignedIn:false})
+    } else if(route === 'home'){
+      this.setState({isSignedIn:true})
+    }
+    this.setState({route:route});
+  }
+  
   render() {
+    const {isSignedIn,route,imageURL,box} = this.state;
     return (
       <div className="App">
         <Particles className='particles' params={particlesOptions}/>
-        <Navigation/>
-        <Logo/>
-        <Rank/>
-        <ImageLinkForm onSubmit={this.onSubmit} onInputChange= {this.onInputChange}/>
-        <FaceRecognition box={this.state.box} imageURL= {this.state.imageURL}/>
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+        {
+          route==='home'?
+          <div>
+            <Logo/>
+            <Rank/>
+            <ImageLinkForm onSubmit={this.onSubmit} onInputChange= {this.onInputChange}/>
+            <FaceRecognition box={this.state.box} imageURL= {imageURL}/>
+          </div>
+          :(
+            //if
+            route==='signin'?
+            <SignIn onSignIn={this.onRouteChange}/>
+            : 
+            <Register onRegister={this.onRouteChange}/>
+            ) 
+        }
       </div>
     );
   }

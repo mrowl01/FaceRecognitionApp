@@ -7,14 +7,10 @@ import Rank from './components/Rank/Rank.js';
 import Particles from 'react-particles-js'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Register from './components/Register/Register';
-import Clarifai from 'clarifai';
 import SignIn from './components/SignIn/SignIn';
 
-const API_KEY= process.env.REACT_APP_CLARAFAI;
 
-const app = new Clarifai.App({
-  apiKey: API_KEY
-});
+
 
 const particlesOptions={
   particles:{
@@ -44,6 +40,22 @@ const particlesOptions={
     }
   }
 }
+const iState = 
+  {
+      input:'',
+      imageURL:'',
+      box:{},
+      route:'signin',
+      isSignedIn:false,
+      user:{
+        id:'',
+        name:'',
+        email:'',
+        entries:0,
+        joined:''
+      }
+    }
+
 
 class App extends Component {
   constructor () {
@@ -100,9 +112,14 @@ class App extends Component {
   }
   onSubmit = () =>{
     this.setState({imageURL:this.state.input});
-    app.models.predict(
-    Clarifai.FACE_DETECT_MODEL, 
-    this.state.input)
+    fetch('http://localhost:3001/imageurl', {
+          method:'post', 
+          headers: {'Content-Type':'application/json'},
+          body:JSON.stringify({
+            input:this.state.input,
+          })
+        })
+    .then(response=>response.json())
     .then(response=> {
       if(response){
         fetch('http://localhost:3001/image', {
@@ -116,6 +133,7 @@ class App extends Component {
         .then(count=>{
           this.setState(Object.assign(this.state.user,{entries:count}))
         })
+        .catch(console.log)
       }
       this.displayFaceBox(this.calculateFaceLocation(response))
     })
@@ -125,7 +143,7 @@ class App extends Component {
 //todo add authentication
   onRouteChange=(route)=>{
     if(route ==='signout'){
-      this.setState({isSignedIn:false})
+      this.setState(iState)
     } else if(route === 'home'){
       this.setState({isSignedIn:true})
     }
@@ -133,6 +151,7 @@ class App extends Component {
   }
   
   render() {
+    
     const {isSignedIn,route,imageURL,box} = this.state;
     return (
       <div className="App">

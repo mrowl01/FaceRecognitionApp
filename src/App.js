@@ -15,27 +15,21 @@ import SignIn from './components/SignIn/SignIn';
 const particlesOptions={
   particles:{
     number:{
-      value:80,
+      value:40,
       density:{
         enable:true,
-        value_area:800
+        value_area:500
       }
     },
     color:{
       value:"#ffffff"
     },
-    interactivity:{
-      onhover:{
-        enable:true,
-        mode:"repulse"
-      }
-    },
     line_linked:{
-      color:"#a1cffc",
+      color:"#F7FF00",
       shadow:{
         enable:true,
         color:"#000000",
-        blur:5
+        blur:1
       }
     }
   }

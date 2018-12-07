@@ -22,7 +22,7 @@ class Register extends Component {
 	}
 
 	onSubmitRegister=()=>{
-		fetch('https://sheltered-coast-77884.herokuapp.com/register',{
+		fetch('https://young-everglades-13596.herokuapp.com/register',{
 			method:'post',
 			headers:{'Content-Type': 'application/json'},
 			body:JSON.stringify({

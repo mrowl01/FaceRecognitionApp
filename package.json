@@ -10,7 +10,7 @@
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-particles-js": "^2.3.0",
-    "react-scripts": "1.1.5",
+    "react-scripts": "^2.1.1",
     "react-tilt": "^0.1.4",
     "tachyons": "^4.11.1"
   },
@@ -22,5 +22,11 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

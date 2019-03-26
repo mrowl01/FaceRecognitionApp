@@ -1,21 +1,20 @@
-import React, {Component} from  'react';
-import './FaceRecognition.css'
+import React from 'react';
+import './FaceRecognition.css';
 
-class FaceRecognition extends Component {
-	render(){
-		const {imageURL,box}= this.props; 
-		return (
-			<div className = 'center ma'>
-				<div className='absolute mt2'>
-					<img id ='usersImage' alt='' src={imageURL} width='500px' height='auto' />
-					<div className='bounding-box' style = {{top:box.topRow, right:box.rightCol, 
-									bottom:box.bottomRow, left:box.leftCol}} >
-					</div>
-				</div>
-			</div>
-
-		)
-	}
+const FaceRecognition = ({ imageURL, boxes }) => {
+  return (
+    <div className='center ma'>
+      <div className='absolute mt2'>
+        <img id='inputimage' alt='' src={imageURL} width='500px' heigh='auto'/>
+        {boxes.map(box =>
+          <div key={`box${box.topRow}${box.rightCol}`}
+              className='bounding-box'
+              style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default FaceRecognition ; 
+export default FaceRecognition;

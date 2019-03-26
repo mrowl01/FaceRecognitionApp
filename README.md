@@ -1,3 +1,8 @@
+-------------------- PICTURE FACE RECOGNITION --------------------<br/>
+
+This will allow you to register and sign in to upload a picture. When it is uploaded the API from Clarify will detect the face in the picture and put a box around it. Made with React, Express, and Node. Please look at .json file for dependancies.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
